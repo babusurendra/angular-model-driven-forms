@@ -1,4 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!--The content below is only a placeholder and can be replaced.
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -15,6 +15,73 @@
   </li>
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+        </li>
+</ul>-->
+<!--
+{{diagnostic}}
+<form #user = "ngForm" (ngSubmit) = "formsubmit(user)">
+<label>Name:</label>
+<input type="text" name="username" class="form-control" ngModel required/>
+<input type="text" name = "useremail" pattern="[^ @]*@[^ @]*" ngModel required />
+<button type="submit" [disabled]="user.form.invalid">Create</button>
+</form>  -->
+<!-- <form novalidate [formGroup]="myform" (ngSubmit)="formsubmit()">
 
+  <fieldset formGroupName="name">
+
+    <label>First Name</label>
+    <input type="text" formControlName="firstName">
+
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName">
+  </fieldset>
+
+
+  <div class="form-group" [ngClass]="{
+    'has-danger': myform.controls.email.invalid && myform.controls.email.dirty, 
+    'has-success': myform.controls.email.valid && myform.controls.email.dirty 
+  }">
+    <label>Email</label>
+    <input type="email" formControlName="email">
+    <p *ngIf ="myform.controls.email.touched && myform.controls.email.invalid">Please enter valid eamil</p>
+    <pre>Touched? {{ myform.controls.email.touched }}</pre>
+    <pre>Valid? {{ myform.controls.email.valid }}</pre>
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" formControlName="password">
+  </div>
+
+  <div class="form-group">
+    <label>Language</label>
+    <select formControlName="language">
+      <option value="">Please select a language</option>
+      <option *ngFor="let lang of langs" [value]="lang">{{lang}}
+      </option>
+    </select>
+  </div>
+
+  <pre>{{myform.value | json}}</pre>
+  <button type="submit">submit</button>
+</form> -->
+<form novalidate [formGroup]="userform" (ngSubmit)="createUser()">
+  <div class="form-group" [ngClass]="{
+    'has-danger': userform.controls.fname.invalid && userform.controls.fname.touched, 
+    'has-success': userform.controls.fname.valid && userform.controls.fname.dirty 
+  }">
+    <label>FirstName:</label>
+    <input type="text" formControlName="fname" required minlength="4"/>
+    <div *ngIf="userform.controls.fname.invalid && userform.controls.fname.touched">
+      <div class="invalid-feedback">
+        <p>Please provide a valid name at least 4 charcters.</p>
+      </div>
+      
+    </div>
+</div>
+  <div class="form-group">
+    <label>LastName:</label>
+    <input type="text" formControlName="lname" />
+  </div>
+  <button type="submit" [disabled]="userform.invalid">Create</button>
+</form>
